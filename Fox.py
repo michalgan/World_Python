@@ -5,12 +5,12 @@ import random
 class Fox(Animal):
     def __init__(self, y: int, x: int, world):
         super().__init__(y, x, world)
-        self.strength = 3
-        self.initiative = 7
-        self.symbol = 'L'
+        self._strength = 3
+        self._initiative = 7
+        self._symbol = 'L'
 
-    def create_child(self, y: int, x: int):
-        return Fox(y, x, self.world)
+    def _create_child(self, y: int, x: int):
+        return Fox(y, x, self._world)
 
     def action(self):
         n = self.get_possible_moves_number()
@@ -20,8 +20,8 @@ class Fox(Animal):
             new_coords = []
             for i in range(n):
                 y, x = coords[i]
-                if not (self.world.is_occupied(y, x)
-                        and self.world.find_organism_on_tile(y, x).get_strength() > self.strength):
+                if not (self._world.is_occupied(y, x)
+                        and self._world.find_organism_on_tile(y, x).get_strength() > self._strength):
                     new_coords.append([y, x])
                     counter += 1
             if counter > 0:

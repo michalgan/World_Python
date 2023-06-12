@@ -11,13 +11,13 @@ class Plant(Organism):
         self.initiative = 0
 
     def action(self):
-        n = self.get_adjoining_clear_tile_number()
-        coords = self.get_adjoining_clear_tile_coords()
+        n = self._get_adjoining_clear_tile_number()
+        coords = self._get_adjoining_clear_tile_coords()
         if n > 0 and randint(0, 99) < 100 * self.PROBABILITY:
             move = randint(0, n - 1)
             y, x = coords[move]
-            child = self.create_child(y, x)
+            child = self._create_child(y, x)
             print("A new organism has shown: ", end="")
             child.info()
             print()
-            self.world.add_organism(child)
+            self._world.add_organism(child)

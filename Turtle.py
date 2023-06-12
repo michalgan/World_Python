@@ -5,9 +5,9 @@ import random
 class Turtle(Animal):
     def __init__(self, y: int, x: int, world):
         super().__init__(y, x, world)
-        self.strength = 2
-        self.initiative = 1
-        self.symbol = 'Z'
+        self._strength = 2
+        self._initiative = 1
+        self._symbol = 'Z'
 
     def action(self):
         if random.randint(0, 4) == 0:
@@ -17,8 +17,8 @@ class Turtle(Animal):
         if organism.get_strength() >= 5:
             super().collision(organism)
 
-    def create_child(self, y: int, x: int):
-        return Turtle(y, x, self.world)
+    def _create_child(self, y: int, x: int):
+        return Turtle(y, x, self._world)
 
     def info(self):
         print("Turtle", end="")

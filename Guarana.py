@@ -4,11 +4,11 @@ from Plant import Plant
 class Guarana(Plant):
     def __init__(self, y: int, x: int, world):
         super().__init__(y, x, world)
-        self.strength = 0
-        self.symbol = 'G'
+        self._strength = 0
+        self._symbol = 'G'
 
-    def create_child(self, y: int, x: int):
-        return Guarana(y, x, self.world)
+    def _create_child(self, y: int, x: int):
+        return Guarana(y, x, self._world)
 
     def info(self):
         print("Guarana", end="")

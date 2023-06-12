@@ -4,13 +4,11 @@ import time
 
 
 def main():
-    world = World(10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-    human = Human(0, 0, world)
-    # world.add_organism(human)
-    for i in range(1):
-        world.print_world_advanced()
-        world.make_turn()
-        time.sleep(1)
+    world = World(10, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+    y, x = world.generate_random_position()
+    human = Human(y, x, world)
+    world.add_organism(human)
+    world.print_world_advanced()
 
 
 if __name__ == "__main__":
