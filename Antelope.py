@@ -10,6 +10,24 @@ class Antelope(Animal):
         self._initiative = 4
         self._symbol = 'A'
 
+    def get_possible_moves_number(self):
+        obj_y = self._position.y
+        obj_x = self._position.x
+        counter = 0
+        for y in range(obj_y - 1, obj_y + 2):
+            for x in range(obj_x - 1, obj_x + 2):
+                if self._world.coords_valid(y, x) and not (y == obj_y and x == obj_x):
+                    counter += 1
+        if self._world.coords_valid(obj_y + 2, obj_x):
+            counter += 1
+        if self._world.coords_valid(obj_y, obj_x + 2):
+            counter += 1
+        if self._world.coords_valid(obj_y - 2, obj_x):
+            counter += 1
+        if self._world.coords_valid(obj_y, obj_x - 2):
+            counter += 1
+        return counter
+
     def collision(self, organism):
         if (
                 self._strength <= organism.get_strength()
@@ -28,24 +46,6 @@ class Antelope(Animal):
             print()
         else:
             super().collision(organism)
-
-    def __get_possible_moves_number(self):
-        obj_y = self._position.y
-        obj_x = self._position.x
-        counter = 0
-        for y in range(obj_y - 1, obj_y + 2):
-            for x in range(obj_x - 1, obj_x + 2):
-                if self._world.coords_valid(y, x) and not (y == obj_y and x == obj_x):
-                    counter += 1
-        if self._world.coords_valid(obj_y + 2, obj_x):
-            counter += 1
-        if self._world.coords_valid(obj_y, obj_x + 2):
-            counter += 1
-        if self._world.coords_valid(obj_y - 2, obj_x):
-            counter += 1
-        if self._world.coords_valid(obj_y, obj_x - 2):
-            counter += 1
-        return counter
 
     def get_possible_moves_coords(self):
         obj_y = self._position.y
@@ -68,3 +68,6 @@ class Antelope(Animal):
     def info(self):
         print("Antelope", end="")
         super().info()
+
+    def _create_child(self, y: int, x: int):
+        return Antelope(y, x, self._world)

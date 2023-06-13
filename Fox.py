@@ -9,9 +9,6 @@ class Fox(Animal):
         self._initiative = 7
         self._symbol = 'L'
 
-    def _create_child(self, y: int, x: int):
-        return Fox(y, x, self._world)
-
     def action(self):
         n = self.get_possible_moves_number()
         if n > 0:
@@ -38,3 +35,6 @@ class Fox(Animal):
     def info(self):
         print("Fox", end="")
         super().info()
+
+    def _create_child(self, y: int, x: int):
+        return Fox(y, x, self._world)

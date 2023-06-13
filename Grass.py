@@ -7,9 +7,10 @@ class Grass(Plant):
         self._strength = 0
         self._symbol = 'T'
 
-    def create_child(self, y: int, x: int):
-        return Grass(y, x, self._world)
-
     def info(self):
         print("Grass", end="")
         super().info()
+
+    def _create_child(self, y: int, x: int):
+        return Grass(y, x, self._world)
+

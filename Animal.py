@@ -23,7 +23,7 @@ class Animal(Organism):
 
     def make_move(self, y: int, x: int):
         self.info()
-        print(f" made a move to _position ({y}, {x})")
+        print(f" made a move to position ({y}, {x})")
         if self._world.is_occupied(y, x):
             self.collision(self._world.find_organism_on_tile(y, x))
         else:

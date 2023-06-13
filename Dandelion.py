@@ -11,9 +11,9 @@ class Dandelion(Plant):
         for _ in range(3):
             super().action()
 
-    def _create_child(self, y: int, x: int):
-        return Dandelion(y, x, self._world)
-
     def info(self):
         print("Dandelion", end="")
         super().info()
+
+    def _create_child(self, y: int, x: int):
+        return Dandelion(y, x, self._world)

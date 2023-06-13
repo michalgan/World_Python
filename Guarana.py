@@ -7,9 +7,6 @@ class Guarana(Plant):
         self._strength = 0
         self._symbol = 'G'
 
-    def _create_child(self, y: int, x: int):
-        return Guarana(y, x, self._world)
-
     def info(self):
         print("Guarana", end="")
         super().info()
@@ -21,3 +18,6 @@ class Guarana(Plant):
         killer.info()
         print(" by 3")
         super().kill(killer)
+
+    def _create_child(self, y: int, x: int):
+        return Guarana(y, x, self._world)

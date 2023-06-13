@@ -24,9 +24,9 @@ class PineBorscht(Plant):
                     print()
                     organism.kill(self)
 
-    def _create_child(self, y: int, x: int):
-        return PineBorscht(y, x, self._world)
-
     def info(self):
         print("PineBorscht", end="")
         super().info()
+
+    def _create_child(self, y: int, x: int):
+        return PineBorscht(y, x, self._world)

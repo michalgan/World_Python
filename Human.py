@@ -32,12 +32,15 @@ class Human(Animal):
         new_y = y
         new_x = x
         made_move = False
+        self._world.update_state()
         while not made_move:
             zn = input()
             if zn == ' ' and not self._ability_active and self._ability_available:
                 print("Human activated skill")
                 self._ability_active = True
                 self._ability_available = False
+            elif zn == ' ':
+                made_move = True
             elif zn in ('w', 'a', 's', 'd'):
                 if zn == 'w':
                     new_y -= 1

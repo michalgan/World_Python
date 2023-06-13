@@ -7,22 +7,19 @@ class CyberSheep(Sheep):
         self._strength = 11
         self._symbol = 'X'
 
-    def create_child(self, y: int, x: int):
-        return CyberSheep(y, x, self._world)
-
     def info(self):
         print("Cyber", end="")
         super().info()
 
     def get_possible_moves_number(self):
-        if self.find_nearest_pine_borscht() is not None:
+        if self._find_nearest_pine_borscht() is not None:
             return 1
         else:
             return super().get_possible_moves_number()
 
     def get_possible_moves_coords(self):
-        if self.find_nearest_pine_borscht() is not None:
-            y, x = self.find_nearest_pine_borscht()
+        if self._find_nearest_pine_borscht() is not None:
+            y, x = self._find_nearest_pine_borscht()
             y -= self._position.y
             x -= self._position.x
             result = []
@@ -40,7 +37,7 @@ class CyberSheep(Sheep):
         else:
             return super().get_possible_moves_coords()
 
-    def find_nearest_pine_borscht(self):
+    def _find_nearest_pine_borscht(self):
         min_distance = float('inf')
         nearest_y, nearest_x = None, None
 
@@ -50,7 +47,7 @@ class CyberSheep(Sheep):
                     continue
                 else:
                     organism = self._world.find_organism_on_tile(y, x)
-                    if  organism != 0 and organism.get_symbol() == 'B':
+                    if organism != 0 and organism.get_symbol() == 'B':
                         distance = abs(y - self._position.y) + abs(x - self._position.x)
                         if distance < min_distance:
                             min_distance = distance
@@ -63,8 +60,8 @@ class CyberSheep(Sheep):
             return None
 
     def kill(self, killer):
-        print(killer.get_symbol())
         if killer.get_symbol() != 'B':
             super().kill(killer)
 
-
+    def _create_child(self, y: int, x: int):
+        return CyberSheep(y, x, self._world)

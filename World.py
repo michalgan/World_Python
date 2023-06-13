@@ -287,14 +287,13 @@ class World:
             initiative = organism['initiative']
             y = organism['y']
             x = organism['x']
-            organism = None
             if symbol == 'C':
                 organism = Human(y, x, self)
                 organism.set_ability_active(data['human_ability_active'])
                 organism.set_ability_available(data['human_ability_available'])
                 organism.set_ability_counter(data['human_ability_counter'])
             else:
-                self.create_organism(symbol, y, x)
+                organism = self.create_organism(symbol, y, x)
 
             organism.set_strength(strength)
             organism.set_initiative(initiative)

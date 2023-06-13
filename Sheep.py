@@ -8,9 +8,9 @@ class Sheep(Animal):
         self._initiative = 4
         self._symbol = 'O'
 
-    def _create_child(self, y: int, x: int):
-        return Sheep(y, x, self._world)
-
     def info(self):
         print("Sheep", end="")
         super().info()
+
+    def _create_child(self, y: int, x: int):
+        return Sheep(y, x, self._world)

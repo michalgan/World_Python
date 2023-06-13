@@ -17,9 +17,6 @@ class Turtle(Animal):
         if organism.get_strength() >= 5:
             super().collision(organism)
 
-    def _create_child(self, y: int, x: int):
-        return Turtle(y, x, self._world)
-
     def info(self):
         print("Turtle", end="")
         super().info()
@@ -31,3 +28,6 @@ class Turtle(Animal):
             aggressor.info()
             print()
         return aggressor.get_strength() < 5
+
+    def _create_child(self, y: int, x: int):
+        return Turtle(y, x, self._world)
